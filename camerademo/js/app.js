@@ -16,8 +16,18 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // ---
 
+  document.addEventListener('visibilitychange', () => {
+    var cameraDemo = window.CameraDemo;
+    if (document.hidden) {
+      cameraDemo.pause();
+    } else {
+      cameraDemo.play();
+    }
+  });
+
   function start() {
-
+    var cameraDemo = window.CameraDemo;
+    cameraDemo.start();
+    cameraDemo.play();
   }
-
 });

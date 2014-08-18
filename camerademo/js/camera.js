@@ -1,40 +1,64 @@
-navigator.getUserMedia = (navigator.getUserMedia ||
-                          navigator.mozGetUserMedia);
+(function (exports) {
+  navigator.getUserMedia = (navigator.getUserMedia ||
+                            navigator.mozGetUserMedia);
 
-var video = document.getElementById('preview');
-var mediaStream = null;
+  var _video = null;
+  var _mediaStream = null;
+  var _toggle = null;
 
-function start() {
-  var captureMedia = {
-    video: true,
-    audio: false
+  _video = document.getElementById('preview');
+  _video.addEventListener('click', cd_toggleFunc);
+
+  function cd_start() {
+    var width = window.screen.width * window.devicePixelRatio;
+    var title = document.getElementById('app_title');
+    var height = window.screen.height * window.devicePixelRatio -
+                 title.offsetHeight;
+    var captureMedia = {
+      video: true,
+      audio: false
+    };
+
+    navigator.getUserMedia(captureMedia,
+      (localMediaStream) => {
+        _mediaStream = localMediaStream;
+        _video.src = window.URL.createObjectURL(localMediaStream);
+//        _video.width = width;
+        _video.height = height;
+      },
+      (error) => {
+        console.log('error: ' + error);
+      });
+  }
+
+  function cd_play() {
+    _video.play();
+
+    _toggle = cd_pause;
+  }
+
+  function cd_pause() {
+    _video.pause();
+    _toggle = cd_play;
   };
 
-  navigator.getUserMedia(captureMedia,
-    function (localMediaStream) {
-      mediaStream = localMediaStream;
-      video.src = window.URL.createObjectURL(localMediaStream);
-      video.play();
-    },
-    function (error) {
-      console.log('error: ' + error);
-    });
-  toggle = pause;
-}
+  function cd_stop() {
+    _mediaStream.stop();
+    window.URL.revokeObjectURL(_video.src);
+    _video.src = null;
+  }
 
-function pause() {
-  window.URL.revokeObjectURL(video.src);
-  video.pause();
-  mediaStream.stop();
-  toggle = start;
-}
+  function cd_toggleFunc() {
+    _toggle();
+  }
 
-var toggle = pause;
+  var CameraDemo = {
+    start: cd_start,
+    play: cd_play,
+    pause: cd_pause,
+    stop: cd_stop
+  };
 
-function toggleFunc() {
-  toggle();
-}
+  exports.CameraDemo = CameraDemo;
+})(this);
 
-video.addEventListener('click', toggleFunc);
-
-start();
