@@ -10,9 +10,9 @@
   _video.addEventListener('click', cd_toggleFunc);
 
   function cd_start() {
-    var width = window.screen.width * window.devicePixelRatio;
+    var width = window.screen.width/* * window.devicePixelRatio*/;
     var title = document.getElementById('app_title');
-    var height = window.screen.height * window.devicePixelRatio -
+    var height = window.screen.height/* * window.devicePixelRatio*/ -
                  title.offsetHeight;
     var captureMedia = {
       video: true,
