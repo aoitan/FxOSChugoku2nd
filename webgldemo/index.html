@@ -28,7 +28,9 @@
         execute the deferred files.
         Read about defer: https://developer.mozilla.org/Web/HTML/Element/script#attr-defer
         -->
+        <script type="text/javascript" src="js/libs/three.js" defer></script>
         <script type="text/javascript" src="js/app.js" defer></script>
+        <script type="text/javascript" src="js/webgl.js" defer></script>
 
         <!--
         The following two lines are for loading the localisations library
@@ -40,9 +42,8 @@
     </head>
     <body>
         <section>
-            <h1 data-l10n-id="app_title">Privileged empty app</h1>
-            <p data-l10n-id="app_description">This app is empty. Fill it with your own stuff!</p>
-            <p id="message"></p>
+            <h1 id="app_title" data-l10n-id="app_title">Privileged empty app</h1>
+            <div id="surface"></div>
         </section>
     </body>
 </html>
