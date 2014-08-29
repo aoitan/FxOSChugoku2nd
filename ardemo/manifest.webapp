@@ -1,7 +1,7 @@
 {
-  "version": "0.1.0",
+  "version": "0.0.1",
   "name": "ARdemo",
-  "description": "A template with the bare minimum structure",
+  "description": "Chugoku FxOS Seminar 2nd - AR Demo",
   "launch_path": "/index.html",
   "icons": {
     "16": "/img/icons/icon16x16.png",
@@ -10,20 +10,16 @@
     "128": "/img/icons/icon128x128.png"
   },
   "developer": {
-    "name": "Your name",
-    "url": "http://example.com"
+    "name": "YABUSHITA Masami",
+    "url": "http://www.gcg.bz"
   },
   "type": "privileged",
-  "permissions": {},
-  "installs_allowed_from": [
-    "*"
-  ],
-  "locales": {
-    "es": {
-      "name": "Aplicación vacía privilegiada",
-      "description": "Una plantilla con la mínima estructura",
-      "permissions": {}
+  "permissions": {
+    "video-capture": {
+      "description": "camera preview"
     }
+  },
+  "locales": {
   },
   "default_locale": "en"
 }

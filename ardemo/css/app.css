@@ -1,18 +1,36 @@
-html, body {
+html {
   margin: 0;
-  padding: 0.5rem;
+  padding: 0;
 }
 
 body {
   font-size: 1rem;
   background: #fff;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-  margin: 0 0 1rem 0;
+  background-color: orange;
+  margin: 0;
+  padding: 0 1rem;
 }
 
-p {
-  font-size: inherit;
+#video-container {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+video {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+
+#overlay {
+  top: 50%;
+  left: 50%;
+  position: absolute;
 }
 

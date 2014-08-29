@@ -16,14 +16,18 @@ window.addEventListener('DOMContentLoaded', function() {
 
   // ---
 
+  document.addEventListener('visibilitychange', () => {
+    var cameraDemo = window.CameraDemo;
+    if (document.hidden) {
+      cameraDemo.pause();
+    } else {
+      cameraDemo.play();
+    }
+  });
+
   function start() {
-
-    var message = document.getElementById('message');
-
-    // We're using textContent because inserting content from external sources into your page using innerHTML can be dangerous.
-    // https://developer.mozilla.org/Web/API/Element.innerHTML#Security_considerations
-    message.textContent = translate('message');
-
+    var cameraDemo = window.CameraDemo;
+    cameraDemo.start();
+    cameraDemo.play();
   }
-
 });
