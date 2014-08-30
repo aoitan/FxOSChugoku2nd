@@ -19,9 +19,8 @@ WebGLSample.prototype = {
     var width = window.screen.width;
     var height = window.screen.height;
     this._cameraParam = {
-      width: width/* * window.devicePixelRatio*/,
-      height: height/* * window.devicePixelRatio*/ -
-              title.offsetHeight,
+      width: width,
+      height: height - title.offsetHeight,
       fov: 60, // 画角
       aspect: width / height, // アスペクト比
       near: 1, // ニアクリップ
