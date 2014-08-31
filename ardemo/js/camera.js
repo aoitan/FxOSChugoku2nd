@@ -19,16 +19,21 @@
       audio: false
     };
 
-    navigator.getUserMedia(captureMedia,
-      (localMediaStream) => {
-        _mediaStream = localMediaStream;
-        _video.src = window.URL.createObjectURL(localMediaStream);
-//        _video.width = width;
-        _video.height = height;
-      },
-      (error) => {
-        console.log('error: ' + error);
-      });
+    var p = new Promise((resolve, reject) => {
+      navigator.getUserMedia(captureMedia,
+        (localMediaStream) => {
+          _mediaStream = localMediaStream;
+          _video.src = window.URL.createObjectURL(localMediaStream);
+          _video.width = 320;
+          _video.height = 240;
+          resolve(localMediaStream);
+        },
+        (error) => {
+          console.log('error: ' + error);
+          reject(error);
+        });
+    });
+    return p;
   }
 
   function cd_play() {

@@ -26,8 +26,36 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 
   function start() {
+    var video = document.getElementById('preview');
+
+    // カメラの用意
     var cameraDemo = window.CameraDemo;
-    cameraDemo.start();
-    cameraDemo.play();
+    cameraDemo.start().then((mediaStream) => {
+      var playPromise = new Promise((resolve) => {
+        video.addEventListener('play', () => {
+          resolve();
+        });
+        cameraDemo.play();
+      });
+      return playPromise;
+    }).then(() => {
+      // WebGLの用意
+      var webglDemo = new WebGLSample();
+      webglDemo.init();
+
+      // ARの用意
+      var arDemo = window.ARDemo;
+      var videoPlane = document.getElementById('video-plane');
+      arDemo.init(webglDemo.getCamera(), webglDemo.getScene(),
+                  webglDemo.createCubeMesh(), video, videoPlane);
+
+      // ループ
+      function render() {
+        arDemo.tick(webglDemo.getRender(), webglDemo.getCamera(),
+                    webglDemo.getScene(), video, videoPlane);
+        window.requestAnimationFrame(render);
+      }
+      window.requestAnimationFrame(render);
+    });
   }
 });

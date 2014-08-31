@@ -28,7 +28,11 @@
         execute the deferred files.
         Read about defer: https://developer.mozilla.org/Web/HTML/Element/script#attr-defer
         -->
+        <script type="text/javascript" src="js/libs/JSARToolKit.js" defer></script>
+        <script type="text/javascript" src="js/libs/three.js" defer></script>
         <script type="text/javascript" src="js/camera.js" defer></script>
+        <script type="text/javascript" src="js/webgl.js" defer></script>
+        <script type="text/javascript" src="js/ar.js" defer></script>
         <script type="text/javascript" src="js/app.js" defer></script>
 
         <!--
@@ -46,7 +50,8 @@
         <section>
             <div id="video-container">
                 <video id="preview"></video>
-                <div id="overlay">Overlay!</div>
+                <canvas id="video-plane"></canvas>
+                <div id="overlay"></div>
             </div>
         </section>
     </body>
